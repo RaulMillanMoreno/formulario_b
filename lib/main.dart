@@ -125,7 +125,7 @@ class _FormBState extends State<FormB> {
               FormBuilderTextField(//cuadro de texto del gmail
                 name: 'gmail',
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
+                  FormBuilderValidators.required(errorText: 'Es necesario llenar este texto')
                 ]),
                 decoration: InputDecoration(
                   labelText: 'Email',
@@ -137,7 +137,7 @@ class _FormBState extends State<FormB> {
               FormBuilderTextField(// cuadro de texto de la direccion
                 name: 'direccion',
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
+                  FormBuilderValidators.required(errorText: 'Es necesario llenar este texto')
                 ]),
                 decoration: InputDecoration(
                   labelText: 'Address',
@@ -149,7 +149,7 @@ class _FormBState extends State<FormB> {
               FormBuilderTextField(//cuadro de texto del telefono
                 name: 'telefono',
                 validator: FormBuilderValidators.compose([
-                  FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
+                  FormBuilderValidators.required(errorText: 'Es necesario llenar este texto')
                 ]),
                 decoration: const InputDecoration(
                   labelText: 'Mobile No',
