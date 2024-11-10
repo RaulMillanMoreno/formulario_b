@@ -25,7 +25,7 @@ class _FormBState extends State<FormB> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Raúl Millán- Salesians Sarrià 24/25'),
+        title: const Text('Raúl Millán-Salesians Sarrià 24/25'),
         backgroundColor: const Color.fromARGB(255, 167, 3, 208),
       ),
       body: Column(
