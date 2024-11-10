@@ -35,8 +35,8 @@ class _FormBState extends State<FormB> {
               type: StepperType.horizontal, 
               currentStep: _currentStep, 
               steps: _getSteps(), // Lista de pasos generada por _getSteps()
-              onStepContinue: _continue, // Acción al pulsar "Continuar"
-              onStepCancel: _cancel, // Acción al pulsar "Cancelar"
+              onStepContinue: _continue,
+              onStepCancel: _cancel, 
               onStepTapped: (int step) {
                 setState(() {
                   _currentStep = step;
@@ -114,7 +114,7 @@ class _FormBState extends State<FormB> {
               const Text(
                 'Upload',
                 style: TextStyle(
-                    fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
+                  fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
               const SizedBox(height: 8),
               const Text(
