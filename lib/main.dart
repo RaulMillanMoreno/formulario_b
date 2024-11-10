@@ -16,7 +16,7 @@ class FormB extends StatefulWidget {
 }
 
 class _FormBState extends State<FormB> {
-  int _currentStep = 0;
+  int _currentStep = 0; // Muestra el indice del paso inicial
   final _formKey = GlobalKey<FormBuilderState>();
 
   void _onChanged(dynamic val) => debugPrint(val.toString());
@@ -31,17 +31,18 @@ class _FormBState extends State<FormB> {
       body: Column(
         children: [
           Expanded(
-            child: Stepper(
-              type: StepperType.horizontal,
-              currentStep: _currentStep,
-              steps: _getSteps(),
-              onStepContinue: _continue,
-              onStepCancel: _cancel,
+            child: Stepper(// Es el componente Stepper que muestra pasos secuenciales
+              type: StepperType.horizontal, 
+              currentStep: _currentStep, 
+              steps: _getSteps(), // Lista de pasos generada por _getSteps()
+              onStepContinue: _continue, // Acción al pulsar "Continuar"
+              onStepCancel: _cancel, // Acción al pulsar "Cancelar"
               onStepTapped: (int step) {
                 setState(() {
                   _currentStep = step;
                 });
               },
+              // Los botones de control
               controlsBuilder: (BuildContext context, ControlsDetails details) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -52,9 +53,8 @@ class _FormBState extends State<FormB> {
                         backgroundColor: const Color.fromARGB(255, 30, 46, 117),
                       ),
                       child: const Text('CONTINUE',
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),),
+                        style: TextStyle(color: Colors.white),
+                      ),
                     ),
                     const SizedBox(width: 8),
                     TextButton(
@@ -71,9 +71,10 @@ class _FormBState extends State<FormB> {
     );
   }
 
+  // Genera la lista de pasos (Steps) que se muestra en el Stepper
   List<Step> _getSteps() {
     return [
-      Step(
+      Step(//primer paso
         title: const Text('Pers.'),
         content: Column(
           children: const [
@@ -85,9 +86,9 @@ class _FormBState extends State<FormB> {
             Text('Pulsi "Contact" o pulsi el botó de "Continue".'),
           ],
         ),
-        isActive: _currentStep >= 0,
+        isActive: _currentStep >= 0, // Define si el paso está activo
       ),
-      Step(
+      Step(//segundo paso
         title: const Text('Contact'),
         content: Column(
           children: const [
@@ -101,12 +102,12 @@ class _FormBState extends State<FormB> {
         ),
         isActive: _currentStep >= 1,
       ),
-      Step(
+      Step( //tercer paso
         title: const Text('Upload'),
         isActive: _currentStep >= 2,
         state: _currentStep == 2 ? StepState.indexed : StepState.complete,
         content: FormBuilder(
-          key: _formKey, // Usar el key aquí
+          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -121,7 +122,7 @@ class _FormBState extends State<FormB> {
                 style: TextStyle(color: Colors.blue),
               ),
               const SizedBox(height: 16),
-              FormBuilderTextField(
+              FormBuilderTextField(//cuadro de texto del gmail
                 name: 'gmail',
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
@@ -133,7 +134,7 @@ class _FormBState extends State<FormB> {
                 ),
               ),
               const SizedBox(height: 16),
-              FormBuilderTextField(
+              FormBuilderTextField(// cuadro de texto de la direccion
                 name: 'direccion',
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
@@ -145,7 +146,7 @@ class _FormBState extends State<FormB> {
                 ),
               ),
               const SizedBox(height: 16),
-              FormBuilderTextField(
+              FormBuilderTextField(//cuadro de texto del telefono
                 name: 'telefono',
                 validator: FormBuilderValidators.compose([
                   FormBuilderValidators.required(errorText: 'Es necesario seleccionar una opción')
@@ -165,17 +166,18 @@ class _FormBState extends State<FormB> {
     ];
   }
 
+  // Función para avanzar al siguiente paso en el Stepper
   void _continue() {
     if (_currentStep < _getSteps().length - 1) {
       setState(() {
         _currentStep += 1;
       });
-    } else {
+    } else {//se ejecuta en el continuar del tecero
       _showAlertDialog();
     }
   }
 
-  void _showAlertDialog() {
+  void _showAlertDialog() {// muestra los datos de los cuadros de texto de la tercera parte
     if (_formKey.currentState?.saveAndValidate() ?? false) {
       final formValues = _formKey.currentState!.value;
       showDialog(
@@ -210,6 +212,7 @@ class _FormBState extends State<FormB> {
     }
   }
 
+  // Función para retroceder al paso anterior
   void _cancel() {
     if (_currentStep > 0) {
       setState(() {
